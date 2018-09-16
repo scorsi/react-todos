@@ -2,7 +2,7 @@ import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/RootReducer';
 
-const persitedState = {
+const persistedState = {
     todos: [{
         id: 0,
         text: 'Welcome back!',
@@ -10,7 +10,7 @@ const persitedState = {
     }]
 };
 
-export default function configureStore(initialState = persitedState) {
+export default function configureStore(initialState = persistedState) {
     return createStore(
         rootReducer,
         initialState,
