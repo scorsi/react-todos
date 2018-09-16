@@ -7,7 +7,8 @@ const persistedState = {
         id: 0,
         text: 'Welcome back!',
         completed: false
-    }]
+    }],
+    visibilityFilter: undefined
 };
 
 export default function configureStore(initialState = persistedState) {
