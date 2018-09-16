@@ -25,23 +25,19 @@ const getVisibleTodos = (
 
 const mapStateToTodoListProps = (
     state
-) => {
-    return {
-        todos: getVisibleTodos(
-            state.todos,
-            state.visibilityFilter
-        )
-    };
-};
+) => ({
+    todos: getVisibleTodos(
+        state.todos,
+        state.visibilityFilter
+    )
+});
 const mapDispatchToTodoListProps = (
     dispatch
-) => {
-    return {
-        onTodoClick: (id) => {
-            dispatch(toggleTodo(id));
-        }
-    };
-};
+) => ({
+    onTodoClick: (id) => {
+        dispatch(toggleTodo(id));
+    }
+});
 export default connect(
     mapStateToTodoListProps,
     mapDispatchToTodoListProps
