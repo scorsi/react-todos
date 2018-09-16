@@ -1,9 +1,10 @@
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
 
 import FilterLink from './FilterLinkComponent';
 
 export default () => (
-    <p>
+    <Typography paragraph>
         Show:
         {' '}
         <FilterLink filter='SHOW_ALL'>
@@ -17,5 +18,5 @@ export default () => (
         <FilterLink filter='SHOW_COMPLETED'>
             Completed
         </FilterLink>
-    </p>
+    </Typography>
 );

@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import Button from '@material-ui/core/Button';
 
 import setVisibilityFilter from '../actions/SetVisibilityFilterAction';
 
@@ -9,22 +10,18 @@ const Link = (
         children,
         onClick
     }
-) => {
-    if (active) {
-        return <span>{children}</span>;
-    }
-
-    return (
-        <a
-            onClick={e => {
-                e.preventDefault();
-                onClick();
-            }}
-        >
-            {children}
-        </a>
-    );
-};
+) => (
+    <Button
+        size={"small"}
+        disabled={active}
+        onClick={e => {
+            e.preventDefault();
+            onClick();
+        }}
+    >
+        {children}
+    </Button>
+);
 
 const mapStateToLinkProps = (
     state,
