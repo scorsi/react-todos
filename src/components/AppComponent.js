@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 
-import AddTodo from './components/AddTodoComponent';
-import VisibleTodoList from './components/VisibileTodoListComponent';
-import Footer from './components/FooterComponent';
+import AddTodo from './AddTodoComponent';
+import VisibleTodoList from './VisibileTodoListComponent';
+import Footer from './FooterComponent';
 
 const styles = () => ({
     root: {
@@ -16,12 +16,12 @@ const styles = () => ({
     }
 });
 
-export default withStyles(styles())(class App extends Component {
+export default withStyles(styles())(class AppComponent extends Component {
     render() {
         return (
             <Paper className={this.props.classes.root}>
                 <AddTodo/>
-                <VisibleTodoList/>
+                <VisibleTodoList />
                 <Footer/>
             </Paper>
         );

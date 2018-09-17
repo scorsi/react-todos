@@ -4,7 +4,7 @@ import {Provider} from 'react-redux'
 import configureStore from './store';
 
 import './index.css';
-import App from './App';
+import App from './components/AppComponent';
 
 it('renders without crashing', () => {
     const div = document.createElement('div');

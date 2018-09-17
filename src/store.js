@@ -1,20 +1,25 @@
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-import rootReducer from './reducers/RootReducer';
+import logger from 'redux-logger';
+import throttle from 'lodash/throttle';
 
-const persistedState = {
-    todos: [{
-        id: 0,
-        text: 'Welcome back!',
-        completed: false
-    }],
-    visibilityFilter: undefined
+import rootReducer from './reducers/index';
+import {loadState, saveState} from "./localStorage";
+
+const configureStore = () => {
+    const store = createStore(
+        rootReducer,
+        loadState(),
+        applyMiddleware(thunk, logger)
+    );
+
+    store.subscribe(throttle(() => {
+        saveState({
+            todos: store.getState().todos
+        });
+    }, 1000));
+
+    return store;
 };
 
-export default function configureStore(initialState = persistedState) {
-    return createStore(
-        rootReducer,
-        initialState,
-        applyMiddleware(thunk)
-    );
-}
+export default configureStore;

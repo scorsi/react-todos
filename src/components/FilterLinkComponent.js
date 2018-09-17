@@ -1,47 +1,21 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import Button from '@material-ui/core/Button';
+import React, {Component} from 'react';
+import {NavLink} from 'react-router-dom';
 
-import setVisibilityFilter from '../actions/SetVisibilityFilterAction';
-
-const Link = (
-    {
-        active,
-        children,
-        onClick
-    }
-) => (
-    <Button
-        size={"small"}
-        disabled={active}
-        onClick={e => {
-            e.preventDefault();
-            onClick();
-        }}
-    >
-        {children}
-    </Button>
-);
-
-const mapStateToLinkProps = (
-    state,
-    ownProps
-) => ({
-    active:
-        ownProps.filter ===
-        state.visibilityFilter
-});
-const mapDispatchToLinkProps = (
-    dispatch,
-    ownProps
-) => ({
-    onClick: () => {
-        dispatch(
-            setVisibilityFilter(ownProps.filter)
+class FilterLinkComponent extends Component {
+    render() {
+        return (
+            <NavLink
+                exact
+                to={this.props.filter === 'all' ? '/' : `/${this.props.filter}`}
+                activeStyle={{
+                    textDecoration: 'none',
+                    color: 'black'
+                }}
+            >
+                {this.props.children}
+            </NavLink>
         );
     }
-});
-export default connect(
-    mapStateToLinkProps,
-    mapDispatchToLinkProps
-)(Link);
+}
+
+export default FilterLinkComponent;
