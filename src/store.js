@@ -1,23 +1,22 @@
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
-import throttle from 'lodash/throttle';
+import promiseMiddleware from 'redux-promise';
 
 import rootReducer from './reducers/index';
-import {loadState, saveState} from "./localStorage";
 
 const configureStore = () => {
     const store = createStore(
         rootReducer,
-        loadState(),
-        applyMiddleware(thunk, logger)
+        {},
+        applyMiddleware(thunk, promiseMiddleware, logger)
     );
 
-    store.subscribe(throttle(() => {
-        saveState({
-            todos: store.getState().todos
-        });
-    }, 1000));
+    // store.subscribe(throttle(() => {
+    //     saveState({
+    //         todos: store.getState().todos
+    //     });
+    // }, 1000));
 
     return store;
 };
