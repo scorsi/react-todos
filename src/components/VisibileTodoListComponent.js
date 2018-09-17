@@ -4,7 +4,7 @@ import {withRouter} from 'react-router';
 
 import TodoList from './TodoListComponent';
 import * as actions from '../actions';
-import {getVisibleTodos} from '../reducers';
+import {getVisibleTodos, getIsFetching} from '../reducers';
 
 class VisibileTodoListComponent extends Component {
     componentDidMount() {
@@ -22,10 +22,15 @@ class VisibileTodoListComponent extends Component {
     };
 
     render() {
-        const {toggleTodo, ...rest} = this.props;
+        const {toggleTodo, todos, isFetching} = this.props;
+        if (isFetching && !todos.length) return(
+            <p>
+                Loading...
+            </p>
+        );
         return (
             <TodoList
-                {...rest}
+                todos={todos}
                 onTodoClick={toggleTodo}
             />
         );
@@ -38,6 +43,7 @@ VisibileTodoListComponent = withRouter(connect(
         const filter = param === null || param === '' ? 'all' : param;
         return {
             filter,
+            isFetching: getIsFetching(state, filter),
             todos: getVisibleTodos(state, filter)
         }
     },

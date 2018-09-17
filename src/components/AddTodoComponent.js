@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import Grid from '@material-ui/core/Grid';
 
-import addTodo from '../actions/AddTodoAction';
+import {addTodo} from '../actions';
 
 export default connect()(class AddTodo extends Component {
     state = {
