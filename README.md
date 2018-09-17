@@ -11,6 +11,7 @@ This project was bootstrapped with [Create React AppComponent](https://github.co
   - [redux-thunk](https://github.com/reduxjs/redux-thunk)
 - [lodash](https://github.com/lodash/lodash)
 - [node-uuid](https://github.com/kelektiv/node-uuid)
+- [material-ui](https://github.com/mui-org/material-ui)
 
 ## Table of Contents
 
